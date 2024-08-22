@@ -11,49 +11,132 @@ import { MessageService } from '../services/message.service';
 })
 export class HomePage {
 
-  pessoa = {
-    foto: `https://static.vecteezy.com/ti/fotos-gratis/p2/24819288-ai-gerado-estudio-retrato-do-negrito-bravo-doberman-cachorro-dentro-terno-camisa-e-gravata-vestindo-oculos-de-sol-foto.jpeg`,
-    nome: `Plínio Garcia Barretos Filho`,
-    objetivo: `Digital Influencer & Professional Tiktoker`,
-    contato: {
-      telefone: `(21) 99999-9999`,
-      email: `lobopidao@yahoo.com`,
-      github: `github.com/PlinioPidao`,
-      linkedin: `linkedin.com/PlinioGarciaBarretos`
+  segments: string = 'usuarios';
+
+  usuarios = [
+    {
+      nome: 'Seleide Silva',
+      idade: 20,
+      genero: 'Masculino',
+      rotinas: [
+        {
+          dia: 'segunda-feira',
+          treinos: [
+            'Rosca Direta',
+            'Crucifixo',
+            'Remada Sumô'
+          ]
+        },
+        {
+          dia: 'quarta-feira',
+          treinos: [
+            'Rosca Invertida',
+            'Pulley',
+            'Remada Sentada'
+          ]
+        },
+        {
+          dia: 'sexta-feira',
+          treinos: [
+            'Supino Inclinado',
+            'Bíceps Corda',
+            'Bíceps Hulk Invertido'
+          ]
+        },
+      ]
     },
-    softskills: [
-      'Comunicação',
-      'Trabalho em Equipe',
-      'Proatividade',
-      'Criatividade',
-      'Bonito',
-      'Cachorrão',
-      'Inovação',
-      'Caçador de Ratos',
-      'Afastador de Gatos e Intrusos'
-    ],
-    formacao_academica: [
-      {
-        ano_inicio: '2017',
-        ano_fim: '2020',
-        instituicao: 'BAC - Batalhão de Ações com Cães',
-        curso: 'Espantador e Caçador de Meliantes',
-      },
-      {
-        ano_inicio: '2019',
-        ano_fim: '2024',
-        instituicao: 'TikTok Educacional',
-        curso: 'Tiktoker Profissional, do Básico ao Coach',
-      }
-    ],
-    projetos: [
-      {
-        ano_projeto: '2015',
-        insituicao_projeto: 'NOME',
-        
-      }
-    ]
+    {
+      nome: 'Marciano Verdinho',
+      idade: 25,
+      genero: 'Masculino',
+      rotinas: [
+        {
+          dia: 'terça-feira',
+          treinos: [
+            'Pancha Redonda',
+            'Jumping Bom dia Papai',
+            'Flexão de Costas'
+          ]
+        },
+        {
+          dia: 'quinta-feira',
+          treinos: [
+            'Rosca Invertida',
+            'Pulley',
+            'Crunch'
+          ]
+        },
+        {
+          dia: 'sábado',
+          treinos: [
+            'Supino Inclinado',
+            'Bíceps Corda',
+            'Bíceps Hulk Invertido'
+          ]
+        },
+      ]
+    }
+  ];
+
+  treinos = [
+    {
+      nome: 'Pulley',
+      series: 3,
+      foto: 'https://www.blog.treinoemalta.com.br/wp-content/uploads/2023/07/Triceps-Pulley-Barra.gif',
+      desc: ''
+    },
+    {
+      nome: 'Agachamento Sumô',
+      series: 3,
+      foto: 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/09/agachamento-sumo-sem-halter.gif'
+    },
+    {
+      nome: 'Supino Reto',
+      series: 4,
+      foto: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/supino-reto.gif'
+    },
+    {
+      nome: 'Remada Unilateral',
+      series: 4,
+      foto: 'https://static.wixstatic.com/media/2edbed_cf8feb6f79494833b887104bc358843d~mv2.gif'
+    },
+    {
+      nome: 'Levantamento Terra',
+      series: 4,
+      foto: 'https://www.hipertrofia.org/blog/wp-content/uploads/2017/11/barbell-deadlift.gif'
+    },
+    {
+      nome: 'Flexão de Braços',
+      series: 3,
+      foto: 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/04/flexao-de-bracos.gif'
+    },
+    {
+      nome: 'Cadeira Abdutora',
+      series: 3,
+      foto: ''
+    },
+    {
+      nome: 'Rosca Direta',
+      series: 3,
+      foto: 'https://static.wixstatic.com/media/2edbed_8a612c33a1f649578ade7454653f7f30~mv2.gif'
+    },
+    {
+      nome: 'Prancha',
+      series: 3,
+      foto: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/prancha-com-elevacao-das-pernas-prancha-aranha.gif'
+    },
+    {
+      nome: 'Extensão de Tríceps na Polia',
+      series: 3,
+      foto: 'https://www.mundoboaforma.com.br/wp-content/uploads/2021/07/triceps-no-pulley-atras-ca-cabeca.gif'
+    }
+  ];
+  
+
+  constructor(){}
+
+  trocar(event: any){
+    this.segments = event.detail.value;
   }
 
-  constructor(){ }
 }

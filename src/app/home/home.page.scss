@@ -2,15 +2,35 @@
 //     outline: 1px solid darkorange;
 // }
 
-.perfil-pic{
+.perfil-pic {
     border-radius: 32px;
     outline: 3px solid black;
 }
 
-.titulo-nome{
+.linha {
+    box-shadow: 0 -1px 0 #000;
+    margin-top: 20px;
+}
+
+.card {
+    box-shadow: inset 1px black;
+    border-radius: 10%;
+    outline: 2px solid black;
+}
+
+.titulo-nome {
     font-size: 2.5rem;
 }
 
-.titulo-objetivo{
+.titulo-objetivo {
     font-size: 1.5rem;
+}
+
+
+.espaco {
+    margin-bottom: 2px;
+}
+
+.centro {
+    margin: auto;
 }

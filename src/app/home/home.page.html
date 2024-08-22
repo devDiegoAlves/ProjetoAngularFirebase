@@ -1,141 +1,77 @@
 <ion-content [fullscreen]="true">
 
+  <!-- Menu Segmentos -->
   <ion-row class="ion-justify-content-center">
-    <ion-col size="12" size-lg="8" size-xl="6">
-
-      <!-- CABEÇALHO DO CURRÍCULO -->
-
-      <ion-row>
-        <ion-col size="12" size-lg="4">
-          <img class="perfil-pic"
-            src="{{ this.pessoa.foto }}">
-        </ion-col>
-        <ion-col size="12" size-lg="8">
-          <ion-label>
-            <h2 class="titulo-nome">{{ this.pessoa.nome }}</h2>
-            <h4 class="titulo-objetivo">{{ this.pessoa.objetivo }}</h4>
-          </ion-label>
-        </ion-col>
-      </ion-row>
-
-      <!-- LINHA DIVISÓRIA -->
-
-      <ion-row>
-        <ion-col size="4">
-          <ion-item-divider>
-
-          </ion-item-divider>
-        </ion-col>
-        <ion-col size="4" class="ion-text-center">
-
-          <h3>CONTATO</h3>
-        </ion-col>
-        <ion-col size="4">
-          <ion-item-divider>
-
-          </ion-item-divider>
-        </ion-col>
-      </ion-row>
-
-      <!-- INFORMAÇÕES DE CONTATO -->
-      <ion-row>
-        <ion-col size="12">
-          <ion-card>
-            <ion-item>
-              <ion-icon slot="start" name="mail-outline"></ion-icon>
-              <ion-label>E-mail: {{ this.pessoa.contato.email }}</ion-label>
-            </ion-item>
-          </ion-card>
-          <ion-card>
-            <ion-item>
-              <ion-icon slot="start" name="call-outline"></ion-icon>
-              <ion-label>Telefone: {{ this.pessoa.contato.telefone }}</ion-label>
-            </ion-item>
-          </ion-card>
-          <ion-card>
-            <ion-item>
-              <ion-icon slot="start" name="logo-github"></ion-icon>
-              <ion-label>GitHub: {{ this.pessoa.contato.github }}</ion-label>
-            </ion-item>
-          </ion-card>
-          <ion-card>
-            <ion-item>
-              <ion-icon slot="start" name="logo-linkedin"></ion-icon>
-              <ion-label>LinkedIn: {{ this.pessoa.contato.linkedin }}</ion-label>
-            </ion-item>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="4">
-          <ion-item-divider>
-
-          </ion-item-divider>
-        </ion-col>
-        <ion-col size="4" class="ion-text-center">
-
-          <h3>SOFT SKILLS</h3>
-        </ion-col>
-        <ion-col size="4">
-          <ion-item-divider>
-
-          </ion-item-divider>
-        </ion-col>
-      </ion-row>
-
-      <!--  SOFT SKILLS -->
-      <ion-row>
-        <ion-col size="12">
-          <ion-card>
-            <ng-container *ngFor="let skills of this.pessoa.softskills">
-            <ion-item>
-              <ion-label>
-                {{ skills }}
-              </ion-label>
-            </ion-item>
-          </ng-container>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-  <!-- FORMAÇÕES -->
-
-  <ion-row>
-    <ion-col size="4">
-      <ion-item-divider>
-
-      </ion-item-divider>
-    </ion-col>
-    <ion-col size="4" class="ion-text-center">
-
-      <h3>FORMAÇÕES</h3>
-    </ion-col>
-    <ion-col size="4">
-      <ion-item-divider>
-
-      </ion-item-divider>
+    <ion-col size="12" size-lg="5">
+      <ion-segment value="usuarios" (ionChange)="trocar($event)">
+        <ion-segment-button value="usuarios">Usuários</ion-segment-button>
+        <ion-segment-button value="treinos">Treinos</ion-segment-button>
+      </ion-segment>
     </ion-col>
   </ion-row>
 
-  <ion-row>
-    <ion-col size="12">
-      <ion-card>
-        <ng-container *ngFor="let formacao of this.pessoa.formacao_academica">
-        <ion-item>
-          <ion-label>
-            Início: {{ formacao.ano_inicio }} - Término: {{ formacao.ano_fim}} |  {{ formacao.instituicao }}
-            <h3><strong>Curso:</strong> {{ formacao.curso }}</h3>
+  <!-- Lista de Usuários -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments == 'usuarios'">
+    <ion-col size="12" size-lg="5">
+      <ng-container *ngFor="let user of this.usuarios">
+        <ion-item color="secondary">
+          <ion-label color="primary">
+            <h2>{{ user.nome }}</h2>
+            <h3>Idade: {{ user.idade }}</h3>
+            <h3>Gênero: {{ user.genero }}</h3>
           </ion-label>
         </ion-item>
+        <ion-accordion-group>
+          <ng-container *ngFor="let rotina of user.rotinas">
+            <ion-accordion value="{{ rotina.dia }}">
+              <ion-item slot="header">
+                <ion-label>{{ rotina.dia }}</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">
+                <ng-container *ngFor="let treino of rotina.treinos">
+                  <ion-item color="dark">
+                    <ion-label color="primary">{{ treino }}</ion-label>
+                  </ion-item>
+                </ng-container>
+              </div>
+            </ion-accordion>
+          </ng-container>
+        </ion-accordion-group>
       </ng-container>
-      </ion-card>
     </ion-col>
   </ion-row>
-</ion-col>
-</ion-row>
 
-  
+  <!-- Lista de Treinos -->
+  <ion-row class="ion-justify-content-center" *ngIf="this.segments == 'treinos'">
+    <ion-col size="12" size-lg="5">
 
+
+
+
+
+    </ion-col>
+    <ion-row class="ion-justify-content-center" *ngIf="this.segments == 'treinos'" class="espaco">
+      <ion-col size="4" class="centro">
+        <ion-card>
+            <ng-container *ngFor="let treino of this.treinos">
+              <ion-card class="card">
+              <img alt="Silhouette of mountains" src="{{ treino.foto }}" />
+              <ion-card-header>
+                <ion-card-title class="centro">{{ treino.nome }}</ion-card-title>
+                <ion-card-subtitle>{{ treino.series }}</ion-card-subtitle>
+              </ion-card-header>
+
+
+              <ion-card-content>
+                Here's a small text description for the card content. Nothing more, nothing less.
+              </ion-card-content>
+            </ion-card>
+              <ion-item-divider class="linha"></ion-item-divider>
+
+            </ng-container>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-row>
 
 </ion-content>
