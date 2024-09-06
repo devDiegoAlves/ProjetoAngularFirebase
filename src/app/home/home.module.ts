@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { IncrementerComponent } from '../shared/incrementer/incrementer.component';
-import { IncrementerModule } from '../shared/incrementer/incrementer.module';
 
 
 @NgModule({
@@ -15,7 +13,6 @@ import { IncrementerModule } from '../shared/incrementer/incrementer.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    IncrementerModule
   ],
   declarations: [HomePage]
 })
