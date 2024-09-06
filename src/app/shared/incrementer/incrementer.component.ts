@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IncrementerService } from '../services/incrementer.service';
 
 @Component({
   selector: 'app-incrementer',
@@ -7,19 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IncrementerComponent  implements OnInit {
 
-  valor: number = 0;
-
-  constructor() { }
+  constructor(
+    public incrementer: IncrementerService
+  ) { }
 
   ngOnInit() {}
 
   decrementar() {
-    if (this.valor > 0)
-      this.valor--;
+    if (this.incrementer.valor > 0)
+      this.incrementer.valor--;
   }
 
   incrementar() {
-    this.valor++;
+    this.incrementer.valor++;
   }
 
 }
