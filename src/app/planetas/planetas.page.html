@@ -9,22 +9,27 @@
         <h1>CADASTRAR PLANETA</h1>
       </ion-label>
       <ion-item>
-        <ion-input label="Nome do Planeta:"></ion-input>
+        <ion-input label="Nome do Planeta:" [(ngModel)]="this.planeta.nome"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Possui população:"></ion-input>
+        <ion-input label="Possui população:" [(ngModel)]="this.planeta.possui_populacao"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Massa:"></ion-input>
+        <ion-input label="Massa:" [(ngModel)]="this.planeta.massa"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Tamanho do Raio:"></ion-input>
+        <ion-input label="Tamanho do Raio:" [(ngModel)]="this.planeta.raio"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Distância do Sol:"></ion-input>
+        <ion-input label="Distância do Sol:" [(ngModel)]="this.planeta.distancia"></ion-input>
       </ion-item>
+
+      <ion-item>
+        <input type="file" value="Upload" (change)="memorizarArquivo($event)">
+      </ion-item>
+      
       <ion-item lines="none">
-        <ion-button slot="end" color="tertiary">Salvar</ion-button>
+        <ion-button slot="end" color="tertiary" (click)="salvar()">Salvar</ion-button>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -32,18 +37,52 @@
   <ion-row class="ion-justify-content-center">
     <ion-col size="10" size-lg="8">
       <ion-card>
-        <ion-row>
-          <ion-col>ID: 1</ion-col>
-          <ion-col>ID: Planeta Marte</ion-col>
-          <ion-col>População: 10000</ion-col>
-          <ion-col>Massa: 10000000</ion-col>
-          <ion-col>Raio: 5000</ion-col>
-          <ion-col>Distância Sol: 100</ion-col>
-        </ion-row>
+        <ng-container *ngFor="let planeta of this.planetas">
+          <ng-container *ngIf="this.crudService.isLoading">
+            <ion-row class="ion-align-items-center">
+              <ion-col>
+                <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+              </ion-col>
+              <ion-col>
+                <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+              </ion-col>
+              <ion-col>
+                <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+              </ion-col>
+              <ion-col>
+                <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+              </ion-col>
+              <ion-col>
+                <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+              </ion-col>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-icon slot="end" name="create"></ion-icon>
+                  <ion-icon slot="end" name="close-circle" (click)="remover(planeta.id)"></ion-icon>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+          <ng-container *ngIf="!this.crudService.isLoading">
+            <ion-row class="ion-align-items-center">
+              <ion-col>Nome: {{ planeta.nome }}</ion-col>
+              <ion-col>População: {{ planeta.possui_populacao }}</ion-col>
+              <ion-col>Massa: {{ planeta.massa }}</ion-col>
+              <ion-col>Raio: {{ planeta.raio }}</ion-col>
+              <ion-col>Distância Sol: {{ planeta.distancia }}</ion-col>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-icon slot="end" name="create" (click)="editar(planeta)"></ion-icon>
+                  <ion-icon slot="end" name="close-circle" (click)="remover(planeta.id)"></ion-icon>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+        </ng-container>
       </ion-card>
     </ion-col>
   </ion-row>
-  
+
 </ion-content>
 
 
